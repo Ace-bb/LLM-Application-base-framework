@@ -1,0 +1,53 @@
+version: '3'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.10.2
+    # user: libinbin
+    environment:
+      - discovery.type=single-node
+      # - http.port=9200
+      - http.cors.enabled=true
+#            - http.cors.allow-origin=http://192.168.93.139:1358
+      - http.cors.allow-origin="*"
+#            - http.cors.allow-origin=http://localhost:1358,http://127.0.0.1:1358
+      - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+      - http.cors.allow-credentials=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "TAKE_FILE_OWNERSHIP=true"
+      - "ELASTIC_PASSWORD=123456"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./elastic/data/:/usr/share/elasticsearch/data
+      # - ./elastic/config/:/usr/share/elasticsearch/config
+      - ./elastic/logs/:/usr/share/elasticsearch/logs
+      - ./elastic/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    ports:
+      - 59201:9200
+      - 59300:9300
+    networks:
+      - elastic
+ 
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.10.2
+    # user: libinbin
+    ports:
+      - 55601:5601
+    volumes:
+      - ./kibana/config:/usr/share/kibana/config
+    environment:
+      SERVER_NAME: 0.0.0.0
+      ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+    networks:
+      - elastic
+
+
+networks:
+  elastic:
+    driver: bridge
+
+
+# elastic
+# 8OJq9JHua_GJi7HFwRlU
