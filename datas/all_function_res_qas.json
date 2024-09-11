@@ -1,0 +1,198 @@
+[
+    [
+        {
+            "question": "请分析用户评论： '这款产品的质量非常好，但价格有点高'",
+            "function": [
+                {
+                    "name": "ICBU_SimilarProductReviewAnalysis",
+                    "description": "ICBU 同款评论分析工具\n分析用户评论情感，提取评论中的四元组信息。",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "user_review": {
+                                "type": "string",
+                                "description": "用户评论文本，用于情感分析和四元组信息提取"
+                            }
+                        },
+                        "required": [
+                            "user_review"
+                        ]
+                    }
+                }
+            ],
+            "input_parameters": [
+                {
+                    "function_name": "ICBU_SimilarProductReviewAnalysis",
+                    "arguments": {
+                        "user_review": "这款产品的质量非常好，但价格有点高"
+                    }
+                }
+            ]
+        },
+        {
+            "question": "请分析一下以下用户的看法: '服务态度很好，但送货速度太慢'",
+            "function": [
+                {
+                    "name": "ICBU_SimilarProductReviewAnalysis",
+                    "description": "ICBU 同款评论分析工具\n分析用户评论情感，提取评论中的四元组信息。",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "user_review": {
+                                "type": "string",
+                                "description": "用户评论文本，用于情感分析和四元组信息提取"
+                            }
+                        },
+                        "required": [
+                            "user_review"
+                        ]
+                    }
+                }
+            ],
+            "input_parameters": [
+                {
+                    "function_name": "ICBU_SimilarProductReviewAnalysis",
+                    "arguments": {
+                        "user_review": "服务态度很好，但送货速度太慢"
+                    }
+                }
+            ]
+        },
+        {
+            "question": "帮我分析一下用户是怎么评价这部电影的： '剧情扣人心弦，但特效不够真实'",
+            "function": [
+                {
+                    "name": "ICBU_SimilarProductReviewAnalysis",
+                    "description": "ICBU 同款评论分析工具\n分析用户评论情感，提取评论中的四元组信息。",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "user_review": {
+                                "type": "string",
+                                "description": "用户评论文本，用于情感分析和四元组信息提取"
+                            }
+                        },
+                        "required": [
+                            "user_review"
+                        ]
+                    }
+                }
+            ],
+            "input_parameters": [
+                {
+                    "function_name": "ICBU_SimilarProductReviewAnalysis",
+                    "arguments": {
+                        "user_review": "剧情扣人心弦，但特效不够真实"
+                    }
+                }
+            ]
+        }
+    ],
+    [
+        {
+            "question": "请将以下英文翻译成简体中文：'What is the capital city of France?'",
+            "function": [
+                {
+                    "name": "translateText",
+                    "description": "goofish图生文翻译功能，支持从英文翻译成简体中文、繁体中文（香港）。\n使用ChatGPT和AIB技术进行翻译。",
+                    "parameters": {
+                        "type": "dict",
+                        "properties": {
+                            "content1": {
+                                "type": "string",
+                                "description": "需要翻译的文本内容。"
+                            },
+                            "target_lauguage_1": {
+                                "type": "string",
+                                "description": "翻译的目标语言（简体中文或繁体中文（香港））。"
+                            }
+                        },
+                        "required": [
+                            "content1",
+                            "target_lauguage_1"
+                        ]
+                    }
+                }
+            ],
+            "input_parameters": [
+                {
+                    "function_name": "translateText",
+                    "arguments": {
+                        "content1": "What is the capital city of France?",
+                        "target_lauguage_1": "简体中文"
+                    }
+                }
+            ]
+        },
+        {
+            "question": "把'How are you?'这句话翻译成繁体中文（香港）。",
+            "function": [
+                {
+                    "name": "translateText",
+                    "description": "goofish图生文翻译功能，支持从英文翻译成简体中文、繁体中文（香港）。\n使用ChatGPT和AIB技术进行翻译。",
+                    "parameters": {
+                        "type": "dict",
+                        "properties": {
+                            "content1": {
+                                "type": "string",
+                                "description": "需要翻译的文本内容。"
+                            },
+                            "target_lauguage_1": {
+                                "type": "string",
+                                "description": "翻译的目标语言（简体中文或繁体中文（香港））。"
+                            }
+                        },
+                        "required": [
+                            "content1",
+                            "target_lauguage_1"
+                        ]
+                    }
+                }
+            ],
+            "input_parameters": [
+                {
+                    "function_name": "translateText",
+                    "arguments": {
+                        "content1": "How are you?",
+                        "target_lauguage_1": "繁体中文（香港）"
+                    }
+                }
+            ]
+        },
+        {
+            "question": "你能帮我把'Time flies like an arrow'翻译成简体中文吗？",
+            "function": [
+                {
+                    "name": "translateText",
+                    "description": "goofish图生文翻译功能，支持从英文翻译成简体中文、繁体中文（香港）。\n使用ChatGPT和AIB技术进行翻译。",
+                    "parameters": {
+                        "type": "dict",
+                        "properties": {
+                            "content1": {
+                                "type": "string",
+                                "description": "需要翻译的文本内容。"
+                            },
+                            "target_lauguage_1": {
+                                "type": "string",
+                                "description": "翻译的目标语言（简体中文或繁体中文（香港））。"
+                            }
+                        },
+                        "required": [
+                            "content1",
+                            "target_lauguage_1"
+                        ]
+                    }
+                }
+            ],
+            "input_parameters": [
+                {
+                    "function_name": "translateText",
+                    "arguments": {
+                        "content1": "Time flies like an arrow",
+                        "target_lauguage_1": "简体中文"
+                    }
+                }
+            ]
+        }
+    ]
+]

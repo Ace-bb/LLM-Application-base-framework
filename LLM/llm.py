@@ -1,6 +1,5 @@
 from conf.setting import *
 from conf.prompt import *
-from conf.conf import *
 
 from langchain.llms import OpenAI
 from langchain.chat_models import ChatOpenAI
@@ -32,9 +31,7 @@ class LLM:
         self.api_key_use = None
 
     def init_llm(self):
-        self.open_api_keys = OPENAI_API_KEYS
-        self.api_key_use = random.sample(self.open_api_keys, 1)[0]
-        if ONE_API_KEY!=None: self.api_key_use = ONE_API_KEY
+        self.api_key_use = ONE_API_KEY
         # console.rule(f"[bold red]{self.api_key_use}")
         # console.log(os.environ['OPENAI_API_BASE'])
         self.llm = ChatOpenAI(model_name=model_name, openai_api_key=self.api_key_use, openai_api_base="https://fast.xeduapi.com/v1", max_retries=max_retries_times, temperature=1.2)

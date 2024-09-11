@@ -1,0 +1,1687 @@
+[
+    {
+        "question": "请分析用户评论： '这款产品的质量非常好，但价格有点高'",
+        "function": [
+            {
+                "name": "ICBU_SimilarProductReviewAnalysis",
+                "description": "ICBU 同款评论分析工具\n分析用户评论情感，提取评论中的四元组信息。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "user_review": {
+                            "type": "string",
+                            "description": "用户评论文本，用于情感分析和四元组信息提取"
+                        }
+                    },
+                    "required": [
+                        "user_review"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "ICBU_SimilarProductReviewAnalysis",
+                "arguments": {
+                    "user_review": "这款产品的质量非常好，但价格有点高"
+                }
+            }
+        ]
+    },
+    {
+        "question": "请将以下英文翻译成简体中文：'What is the capital city of France?'",
+        "function": [
+            {
+                "name": "translateText",
+                "description": "goofish图生文翻译功能，支持从英文翻译成简体中文、繁体中文（香港）。\n使用ChatGPT和AIB技术进行翻译。",
+                "parameters": {
+                    "type": "dict",
+                    "properties": {
+                        "content1": {
+                            "type": "string",
+                            "description": "需要翻译的文本内容。"
+                        },
+                        "target_lauguage_1": {
+                            "type": "string",
+                            "description": "翻译的目标语言（简体中文或繁体中文（香港））。"
+                        }
+                    },
+                    "required": [
+                        "content1",
+                        "target_lauguage_1"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "translateText",
+                "arguments": {
+                    "content1": "What is the capital city of France?",
+                    "target_lauguage_1": "简体中文"
+                }
+            }
+        ]
+    },
+    {
+        "question": "可以告诉我这个商品的信息吗？它有以下特点，图片地址是：www.example.com/product1.jpg，标题是‘高效能LED灯’，属性包括‘节能’、‘长寿命’、‘高亮度’，描述是‘这款LED灯非常节能，使用寿命长，非常适合家庭使用。’",
+        "function": [
+            {
+                "name": "ExtractMLLMProductFeatures",
+                "description": "提取商品的多模态信息，包括图像、标题、属性和描述，基于MarcoVL技术进行特征提取。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "image_url": {
+                            "type": "string",
+                            "description": "商品的图片URL地址，通过该参数提供商品的视觉信息。"
+                        },
+                        "title": {
+                            "type": "string",
+                            "description": "商品的标题，提供商品的简要信息。"
+                        },
+                        "attribute": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "商品的属性列表，包含多个描述商品特点的字符串。"
+                        },
+                        "description": {
+                            "type": "string",
+                            "description": "商品的详细描述，提供关于商品的全面信息。"
+                        }
+                    },
+                    "required": [
+                        "image_url",
+                        "attribute"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "ExtractMLLMProductFeatures",
+                "arguments": {
+                    "image_url": "www.example.com/product1.jpg",
+                    "title": "高效能LED灯",
+                    "attribute": [
+                        "节能",
+                        "长寿命",
+                        "高亮度"
+                    ],
+                    "description": "这款LED灯非常节能，使用寿命长，非常适合家庭使用。"
+                }
+            }
+        ]
+    },
+    {
+        "question": "将以下用户评论从中文翻译成英文：'这款商品真不错，但物流太慢了'，使用AE评论翻译功能。",
+        "function": [
+            {
+                "name": "ae_comment_translation",
+                "description": "AE评论翻译功能用于将用户评论从一种语言翻译成另一种语言。根据翻译场景，可以选择对应的翻译方法，如对话翻译或商品翻译。",
+                "parameters": {
+                    "type": "dict",
+                    "properties": {
+                        "sourceLanguage": {
+                            "type": "string",
+                            "description": "源语言，即待翻译评论的语言。"
+                        },
+                        "targetLanguage": {
+                            "type": "string",
+                            "description": "目标语言，即翻译后的评论语言。"
+                        },
+                        "sourceTextList": {
+                            "type": "array<string>",
+                            "description": "待翻译的文本列表，每个评论单独作为一个字符串。"
+                        },
+                        "formatType": {
+                            "type": "string",
+                            "description": "文本类型，默认情况下为'text'，可以依据需要调整格式类型。"
+                        },
+                        "glossary": {
+                            "type": "string",
+                            "description": "词汇表ID，如果需要出现特定用词或术语，则填写这个ID。"
+                        },
+                        "scene": {
+                            "type": "string",
+                            "description": "业务场景，例如 'AE 评论翻译' 中的具体业务代码。"
+                        },
+                        "requestBizId": {
+                            "type": "string",
+                            "description": "可选参数，用于异步操作的场景，传递键值对信息。"
+                        }
+                    },
+                    "required": [
+                        "sourceLanguage",
+                        "targetLanguage",
+                        "sourceTextList",
+                        "formatType"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "ae_comment_translation",
+                "arguments": {
+                    "sourceLanguage": "zh",
+                    "targetLanguage": "en",
+                    "sourceTextList": [
+                        "这款商品真不错，但物流太慢了"
+                    ],
+                    "formatType": "text"
+                }
+            }
+        ]
+    },
+    {
+        "question": "请对以下用户评价进行多维分析：“这个产品很好用，但希望它的续航时间能更长。”",
+        "function": [
+            {
+                "name": "MultifacetedFeedbackAnalysis",
+                "description": "评论多维分析\n此功能通过多维度的定性深度分析跨境电商行业用户的评价，可以识别用户对产品功能的描述以及用户情感分布的信息。通过对评论进行统计处理，可帮助企业精准把握用户反馈和市场趋势，从而优化产品设计、提升用户体验、改进营销策略，并实现产品质量提升、客户满意度提高和业务持续增长。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "user_review": {
+                            "type": "string",
+                            "description": "用户提供的评价内容"
+                        }
+                    },
+                    "required": [
+                        "user_review"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "MultifacetedFeedbackAnalysis",
+                "arguments": {
+                    "user_review": "这个产品很好用，但希望它的续航时间能更长。"
+                }
+            }
+        ]
+    },
+    {
+        "question": "对这条用户评论进行情感分析：我觉得这个产品非常好用，值得购买！",
+        "function": [
+            {
+                "name": "SentimentAnalysis",
+                "description": "评论情感分析\\n该函数用于识别用户评论中的情感倾向。通过分析用户评论中的情感分布，能够帮助了解用户对产品、服务或内容的整体态度。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "user_review": {
+                            "type": "string",
+                            "description": "输入的用户评论，需对其进行情感分析。"
+                        }
+                    },
+                    "required": [
+                        "user_review"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "SentimentAnalysis",
+                "arguments": {
+                    "user_review": "我觉得这个产品非常好用，值得购买！"
+                }
+            }
+        ]
+    },
+    {
+        "question": "将以下中文对话翻译为英文：你好！今天的天气怎么样？",
+        "function": [
+            {
+                "name": "dialogueTranslation",
+                "description": "对话翻译功能\n本函数用于将输入的文本列表从一种语言翻译为另一种语言。该功能可以翻译对话内容，并可选提供干预词表以优化翻译结果。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "sourceLanguage": {
+                            "type": "string",
+                            "description": "源语言的语种标识（如：'en'代表英语，'zh'代表中文）"
+                        },
+                        "targetLanguage": {
+                            "type": "string",
+                            "description": "目标语言的语种标识（如：'en'代表英语，'zh'代表中文）"
+                        },
+                        "glossary": {
+                            "type": "string",
+                            "description": "干预词表ID，用于针对特定专业术语或词汇的翻译优化"
+                        },
+                        "sourceTextList": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "待翻译的文本内容列表"
+                        },
+                        "scene": {
+                            "type": "string",
+                            "description": "场景ID，用于指定翻译应用的场景（如商务、教育等）"
+                        }
+                    },
+                    "required": [
+                        "sourceLanguage",
+                        "targetLanguage",
+                        "sourceTextList"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "dialogueTranslation",
+                "arguments": {
+                    "sourceLanguage": "zh",
+                    "targetLanguage": "en",
+                    "sourceTextList": [
+                        "你好！今天的天气怎么样？"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "question": "请问如何生成一张使用模板卡片ID为12345的商品图片，地址为https://example.com/image.png，该图片是正式图，任务ID是67890，配置JSON为{'config': 'value'}, 共需要生成2张图片，素材ID是54321，并包含卖点属性JSON为{'sellingPoint': 'featureX'}?",
+        "function": [
+            {
+                "name": "GenerateSellingPointImage",
+                "description": "iframe定制_卖点图生成该函数用于生成卖点图所需的iframe，从而依据给定的参数生成推广用的卖点图片。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "productImageUrl": {
+                            "type": "string",
+                            "description": "商品的图片URL地址"
+                        },
+                        "generateType": {
+                            "type": "string",
+                            "description": "生成图片的类型，如预览图或正式图"
+                        },
+                        "originTaskId": {
+                            "type": "integer",
+                            "description": "关联的原始任务ID，用于追踪任务"
+                        },
+                        "composeJson": {
+                            "type": "string",
+                            "description": "模板配置的JSON字符串"
+                        },
+                        "templateCardId": {
+                            "type": "string",
+                            "description": "模板卡片的唯一标识符ID"
+                        },
+                        "imageNum": {
+                            "type": "integer",
+                            "description": "需要生成的图片数量"
+                        },
+                        "materialId": {
+                            "type": "integer",
+                            "description": "素材ID，用于定位具体的素材"
+                        },
+                        "sellingPointExtractionRequest": {
+                            "type": "string",
+                            "description": "包含卖点生成所需属性的请求参数的JSON字符串"
+                        }
+                    },
+                    "required": [
+                        "productImageUrl",
+                        "generateType",
+                        "originTaskId",
+                        "composeJson",
+                        "templateCardId",
+                        "imageNum",
+                        "materialId",
+                        "sellingPointExtractionRequest"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "GenerateSellingPointImage",
+                "arguments": {
+                    "productImageUrl": "https://example.com/image.png",
+                    "generateType": "正式图",
+                    "originTaskId": 67890,
+                    "composeJson": {
+                        "config": "value"
+                    },
+                    "templateCardId": "12345",
+                    "imageNum": 2,
+                    "materialId": 54321,
+                    "sellingPointExtractionRequest": {
+                        "sellingPoint": "featureX"
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "question": "如何为一个名为苹果手机，主要卖点是高性能，分类是电子产品类的商品生成PUSH主标题文案，原始描述为最新款苹果手机，目标语言为中文？",
+        "function": [
+            {
+                "name": "MarketingContentGenerator",
+                "description": "通用营销文案生成工具\n此工具针对每个产品生成丰富且本地化的多语言营销内容，满足不同场景、渠道及受众的需求，帮助商家提升产品曝光、增加流量。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "marketScene": {
+                            "type": "string",
+                            "description": "营销文案的模板选择，例如PUSH主标题、副标题等。"
+                        },
+                        "sourceLanguage": {
+                            "type": "string",
+                            "description": "原始语言的语言代码。"
+                        },
+                        "keywords": {
+                            "type": "string",
+                            "description": "商品相关的关键词，一般指商品SEO相关关键词或商品核心卖点词。"
+                        },
+                        "productCategory": {
+                            "type": "string",
+                            "description": "商品所属的类别，可参考任何平台的类目结构并输入商品类目名称。"
+                        },
+                        "productDescription": {
+                            "type": "string",
+                            "description": "商品的原始描述信息。"
+                        },
+                        "extParams": {
+                            "type": "string",
+                            "description": "扩展字段，无具体业务含义。"
+                        },
+                        "productTitle": {
+                            "type": "string",
+                            "description": "商品的标题，可以使用商品的原始名称或标题。"
+                        },
+                        "targetLanguage": {
+                            "type": "string",
+                            "description": "目标语言的语言代码。"
+                        },
+                        "textualStyle": {
+                            "type": "string",
+                            "description": "营销文案的文本风格。"
+                        }
+                    },
+                    "required": [
+                        "marketScene",
+                        "sourceLanguage",
+                        "productTitle",
+                        "targetLanguage"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "MarketingContentGenerator",
+                "arguments": {
+                    "marketScene": "PUSH主标题",
+                    "sourceLanguage": "zh",
+                    "productTitle": "苹果手机",
+                    "targetLanguage": "zh",
+                    "keywords": "高性能",
+                    "productCategory": "电子产品",
+                    "productDescription": "最新款苹果手机"
+                }
+            }
+        ]
+    },
+    {
+        "question": "将这个图片的分辨率放大到3倍，并且输出图像质量设置为90，这张图片的网址是：https://example.com/image.jpg",
+        "function": [
+            {
+                "name": "ImageUpscaler",
+                "description": "图像放大功能\n该功能可以将输入的图片进行2倍到4倍的分辨率放大，从而提升低分辨率图像的质量，增强图像纹理细节，全面提高图像的清晰度和主观质量。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "imageUrl": {
+                            "type": "string",
+                            "description": "输入图片的URL地址"
+                        },
+                        "upscaleFactor": {
+                            "type": "number",
+                            "description": "图像放大的倍数，目前支持2-4倍，可选参数，默认值为2"
+                        },
+                        "outputQuality": {
+                            "type": "number",
+                            "description": "输出图片的质量分数，取值范围为30-100，默认为95"
+                        },
+                        "requestBizId": {
+                            "type": "string",
+                            "description": "可选参数，异步请求时透传的标识键"
+                        }
+                    },
+                    "required": [
+                        "imageUrl"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "ImageUpscaler",
+                "arguments": {
+                    "imageUrl": "https://example.com/image.jpg",
+                    "upscaleFactor": 3,
+                    "outputQuality": 90
+                }
+            }
+        ]
+    },
+    {
+        "question": "请为名为'智能手表'，规格为'蓝牙支持、心率监测、防水功能'的商品生成具有吸引力的营销卖点，并将中文的商品描述以及图片URL翻译成英文。",
+        "function": [
+            {
+                "name": "generateProductSellingPoints",
+                "description": "通过多模态理解商品信息和图片，提取有价值的商品信息，生成具有吸引力的营销卖点。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "productName": {
+                            "type": "string",
+                            "description": "商品名称：可以是商品的原商品标题或简短描述。"
+                        },
+                        "itemSpec": {
+                            "type": "string",
+                            "description": "商品属性：描述商品的特征和规格。"
+                        },
+                        "productDescription": {
+                            "type": "string",
+                            "description": "商品详细描述：阐述商品的卖点信息。"
+                        },
+                        "imageUrl": {
+                            "type": "string",
+                            "description": "商品主图：商品主图图片的URL链接。"
+                        },
+                        "sourceLanguage": {
+                            "type": "string",
+                            "description": "原始语言：请输入语言代码，目前支持英文。"
+                        },
+                        "targetLanguage": {
+                            "type": "string",
+                            "description": "目标语言：请输入语言代码，目前仅支持英文。"
+                        }
+                    },
+                    "required": [
+                        "productName",
+                        "sourceLanguage",
+                        "targetLanguage"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "generateProductSellingPoints",
+                "arguments": {
+                    "productName": "智能手表",
+                    "itemSpec": "蓝牙支持、心率监测、防水功能",
+                    "productDescription": "这是一款多功能智能手表，支持蓝牙连接，具有心率监测和防水功能，让您的运动更加科学健康。",
+                    "imageUrl": "http://example.com/image.jpg",
+                    "sourceLanguage": "zh",
+                    "targetLanguage": "en"
+                }
+            }
+        ]
+    },
+    {
+        "question": "请为文本列表['这是一个测试。', '第二个文本。']生成Embedding向量，并指定场景为'示例场景'以及请求ID为42。",
+        "function": [
+            {
+                "name": "generateEmbeddingService",
+                "description": "bge_Embedding生成服务。\n这是一个用于大模型Embedding生成的服务。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "input_text_list": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "输入的文本列表。每个文本将被分析并生成相应的Embedding向量。"
+                        },
+                        "scene": {
+                            "type": "string",
+                            "description": "使用场景。确定Embedding生成的具体应用场景或上下文。"
+                        },
+                        "RequestId": {
+                            "type": "number",
+                            "description": "请求ID。唯一标识一次调用请求。"
+                        }
+                    },
+                    "required": [
+                        "input_text_list",
+                        "scene",
+                        "RequestId"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "generateEmbeddingService",
+                "arguments": {
+                    "input_text_list": [
+                        "这是一个测试。",
+                        "第二个文本。"
+                    ],
+                    "scene": "示例场景",
+                    "RequestId": 42
+                }
+            }
+        ]
+    },
+    {
+        "question": "请用租户代码T1234和用户名称王小明来创建一个智能体",
+        "function": [
+            {
+                "name": "CreateAgent",
+                "description": "创建智能体接口\n这一方法允许用户通过提供必要的信息来创建自己的智能体。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "creatorName": {
+                            "type": "string",
+                            "description": "创建智能体的用户名称."
+                        },
+                        "tenantCode": {
+                            "type": "string",
+                            "description": "用户所属租户的代码."
+                        }
+                    },
+                    "required": [
+                        "creatorName",
+                        "tenantCode"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "CreateAgent",
+                "arguments": {
+                    "creatorName": "王小明",
+                    "tenantCode": "T1234"
+                }
+            }
+        ]
+    },
+    {
+        "question": "我需要一个目标语言是中文的女士连衣裙的商品描述，商品的特性是纯棉，类别为服装，核心卖点是夏季时尚，原有描述是'此商品采用优质纯棉材料制成，设计简洁大方。'",
+        "function": [
+            {
+                "name": "generateProductDescription",
+                "description": "此函数用于为海外电商商品生成详细的商品描述。通过简单的参数输入，可以生成内容丰富、卖点精准并充满吸引力的商品描述，旨在解决商品详情文本信息缺失、重点不明确等效率问题，从而提升商品的转化率。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "productName": {
+                            "type": "string",
+                            "description": "商品标题，可以填写商品的原始名称或标题，总字符长度不超过500。"
+                        },
+                        "itemSpec": {
+                            "type": "string",
+                            "description": "商品属性，描述商品的特征，例如商品的材质等。"
+                        },
+                        "productCategory": {
+                            "type": "string",
+                            "description": "商品所属类目，可参考任何平台的类目结构，输入商品类目名称。"
+                        },
+                        "productKeyword": {
+                            "type": "string",
+                            "description": "商品相关关键词，通常是与SEO相关的关键词或商品的核心卖点词。"
+                        },
+                        "targetLanguage": {
+                            "type": "string",
+                            "description": "目标语种，用于生成描述的目标语言。"
+                        },
+                        "productDescription": {
+                            "type": "string",
+                            "description": "商品详情描述，输入原有商品详情描述使生成结果更详细和精准。"
+                        },
+                        "bizCode": {
+                            "type": "string",
+                            "description": "业务标识，用于标识不同业务场景。"
+                        },
+                        "requestBizId": {
+                            "type": "string",
+                            "description": "异步场景透传的key，用于在异步操作中保持请求上下文。"
+                        }
+                    },
+                    "required": [
+                        "productName",
+                        "targetLanguage"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "generateProductDescription",
+                "arguments": {
+                    "productName": "女士连衣裙",
+                    "itemSpec": "纯棉",
+                    "productCategory": "服装",
+                    "productKeyword": "夏季时尚",
+                    "targetLanguage": "中文",
+                    "productDescription": "此商品采用优质纯棉材料制成，设计简洁大方。"
+                }
+            }
+        ]
+    },
+    {
+        "question": "请为以下图片链接进行智能抠图处理，并将图像填充到指定比例，同时居中并转换为JPG格式，返回结果：图片链接为http://example.com/image.jpg，填充宽度比例为1，填充高度比例为1，主体居中，转换输出为JPG格式。",
+        "function": [
+            {
+                "name": "IntelligentCutout",
+                "description": "智能抠图可以自动识别图像中的显著性主体，将主体和背景进行分离，返回去除背景后的主体图片。提供多种背景选项及定制尺寸选择，优化商品展示效果。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "url": {
+                            "type": "string",
+                            "description": "图片URL"
+                        },
+                        "targetWidth": {
+                            "type": "string",
+                            "description": "图片缩放到指定宽度，正整数，例如 '800'"
+                        },
+                        "targetHeight": {
+                            "type": "string",
+                            "description": "图片缩放到指定高度，正整数，例如 '600'"
+                        },
+                        "aspectRatioW": {
+                            "type": "string",
+                            "description": "图片填充到指定宽度比例，正整数，例如 '1'"
+                        },
+                        "aspectRatioH": {
+                            "type": "string",
+                            "description": "图片填充到指定高度比例，正整数，例如 '1'"
+                        },
+                        "maxWidth": {
+                            "type": "string",
+                            "description": "图片的最大允许宽度，正整数，例如 '800'"
+                        },
+                        "maxHeight": {
+                            "type": "string",
+                            "description": "图片的最大允许高度，正整数，例如 '800'"
+                        },
+                        "fgLowRatio": {
+                            "type": "string",
+                            "description": "主体占比下限，（0, 1)，例如 '0.1'"
+                        },
+                        "fgHighRatio": {
+                            "type": "string",
+                            "description": "主体占比上限，（0, 1]，例如 '1.0'"
+                        },
+                        "qualityLevel": {
+                            "type": "string",
+                            "description": "机器审核阈值，{1, .., 9}，例如 '5'"
+                        },
+                        "centered": {
+                            "type": "string",
+                            "description": "主体是否居中，非'0'表示是，例如 '1'"
+                        },
+                        "toJPG": {
+                            "type": "string",
+                            "description": "是否转换输出为JPG格式，非'0'表示是，例如 '1'"
+                        },
+                        "bgColor": {
+                            "type": "string",
+                            "description": "背景BGR色值，默认值为白色，例如 '255,255,255'"
+                        },
+                        "postfix": {
+                            "type": "string",
+                            "description": "文件名添加指定后缀"
+                        },
+                        "returnAlphaChannel": {
+                            "type": "string",
+                            "description": "是否只返回图片的alpha通道，非'0'表示是，例如 '1'"
+                        },
+                        "sendTime": {
+                            "type": "string",
+                            "description": "发送时间（保留字段）"
+                        },
+                        "cropped": {
+                            "type": "string",
+                            "description": "是否从图片中裁剪出主体，例如 '1'"
+                        },
+                        "pngSkipped": {
+                            "type": "string",
+                            "description": "PNG跳过（保留字段）"
+                        },
+                        "keepBG": {
+                            "type": "string",
+                            "description": "保持背景（保留字段）"
+                        },
+                        "requestBizId": {
+                            "type": "string",
+                            "description": "选填，异步场景透传的key"
+                        },
+                        "extraInfo": {
+                            "type": "string",
+                            "description": "选填，异步场景回传的额外信息"
+                        }
+                    },
+                    "required": [
+                        "url"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "IntelligentCutout",
+                "arguments": {
+                    "url": "http://example.com/image.jpg",
+                    "aspectRatioW": "1",
+                    "aspectRatioH": "1",
+                    "centered": "1",
+                    "toJPG": "1"
+                }
+            }
+        ]
+    },
+    {
+        "question": "我有一张图片https://example.com/image.jpg用于铺货，它是否含有黑词？",
+        "function": [
+            {
+                "name": "BlacklistedImageFilter",
+                "description": "黑词图片过滤\\n该函数主要用于铺货场景下，支持业务定制化识别图片内特定文本内容，以过滤那些含有黑词的图片。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "type": "string",
+                            "description": "图片的URL链接"
+                        },
+                        "scene": {
+                            "type": "string",
+                            "description": "业务场景对应的代码"
+                        }
+                    },
+                    "required": [
+                        "image",
+                        "scene"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "BlacklistedImageFilter",
+                "arguments": {
+                    "image": "https://example.com/image.jpg",
+                    "scene": "铺货"
+                }
+            }
+        ]
+    },
+    {
+        "question": "请针对用户评论'这个商品非常不错，很喜欢它的设计！会推荐给朋友。'，并且用户评分为5星，与之相关的自动回复。",
+        "function": [
+            {
+                "name": "AutoReply",
+                "description": "自动评论回复功能\n本函数旨在基于用户对商品的评论，借助大语言模型，生成具有专业性和技巧性的自动回复。通过精准理解用户评论的语义，提供个性化和差异化的回复。采用多样化的回应话术和近似表情包，提高回复的真诚度和互动性，同时也有助于提高店铺的商品转化率，节约运营成本。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "user_review": {
+                            "type": "string",
+                            "description": "用户的评论文本"
+                        },
+                        "product_rating": {
+                            "type": "string",
+                            "description": "用户对商品的评分"
+                        }
+                    },
+                    "required": [
+                        "user_review"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "AutoReply",
+                "arguments": {
+                    "user_review": "这个商品非常不错，很喜欢它的设计！会推荐给朋友。",
+                    "product_rating": "5"
+                }
+            }
+        ]
+    },
+    {
+        "question": "请将这张图像的文字从中文翻译成英文，包括商品主体上的文字，图像的链接是http://example.com/image.jpg",
+        "function": [
+            {
+                "name": "ImageTranslationFunction",
+                "description": "此函数用于图片翻译，特别适用于电商广告等图像中包含的文字翻译。它支持多种语言方向，能够精准处理图片内复杂的文本布局，确保翻译后的内容与原图片内容保持一致，从而帮助电商平台和开发者轻松实现图像内容的多语言转换与展示。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "targetLanguage": {
+                            "type": "string",
+                            "description": "目标语言，即翻译后的语言。"
+                        },
+                        "imageUrl": {
+                            "type": "string",
+                            "description": "待翻译图片的 URL 地址。"
+                        },
+                        "includingProductArea": {
+                            "type": "boolean",
+                            "description": "是否包含商品主体上的文字翻译。（false 表示不翻译商品主体上的文字，默认为 false）"
+                        },
+                        "sourceLanguage": {
+                            "type": "string",
+                            "description": "源语言，即图片中原始文字的语言。"
+                        },
+                        "useImageEditor": {
+                            "type": "boolean",
+                            "description": "是否使用图片编辑器进行翻译处理。"
+                        }
+                    },
+                    "required": [
+                        "targetLanguage",
+                        "imageUrl",
+                        "sourceLanguage"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "ImageTranslationFunction",
+                "arguments": {
+                    "targetLanguage": "英文",
+                    "imageUrl": "http://example.com/image.jpg",
+                    "sourceLanguage": "中文",
+                    "includingProductArea": true
+                }
+            }
+        ]
+    },
+    {
+        "question": "请帮我处理一下ID为12345、SKU ID为ABCDE的商品因为质量问题而申请的退款。用户的详细描述如下：商品存在严重瑕疵，无法正常使用。这里是用户提供的图片链接：https://example.com/image.jpg",
+        "function": [
+            {
+                "name": "smartRefund",
+                "description": "智能退款功能，用于处理 AE 平台的仅退款和退货退款场景。通过引入 AI 建模，包括意图识别和多模态模型进行判责，进一步基于历史数据进行模型和策略的优化，能够有效替代重复人工操作，提升业务运营效率。",
+                "parameters": {
+                    "type": "dict",
+                    "properties": {
+                        "itemId": {
+                            "type": "string",
+                            "description": "需要处理的商品ID"
+                        },
+                        "skuId": {
+                            "type": "string",
+                            "description": "需要处理的商品SKU ID"
+                        },
+                        "reason": {
+                            "type": "string",
+                            "description": "纠纷发生的具体理由码"
+                        },
+                        "comment": {
+                            "type": "string",
+                            "description": "用户对纠纷的详细描述信息"
+                        },
+                        "images": {
+                            "type": "string",
+                            "description": "用户提供的举证图片链接"
+                        }
+                    },
+                    "required": []
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "smartRefund",
+                "arguments": {
+                    "itemId": "12345",
+                    "skuId": "ABCDE",
+                    "reason": "质量问题",
+                    "comment": "商品存在严重瑕疵，无法正常使用",
+                    "images": "https://example.com/image.jpg"
+                }
+            }
+        ]
+    },
+    {
+        "question": "请将这段技术文档从中文翻译成英语，内容是：'本文主要介绍人工智能的发展历史与未来趋势。'，文档格式是markdown。",
+        "function": [
+            {
+                "name": "DamoTranslator",
+                "description": "达摩翻译功能，用于将输入文本翻译为指定的目标语言。此功能支持各种文本格式，并考虑到不同的领域类型。",
+                "parameters": {
+                    "type": "dict",
+                    "properties": {
+                        "tran": {
+                            "type": "string",
+                            "description": "需要翻译的文本内容，如文章或句子。"
+                        },
+                        "lang": {
+                            "type": "string",
+                            "description": "目标翻译的语言，例如英语或法语。"
+                        },
+                        "sourceType": {
+                            "type": "string",
+                            "description": "输入文本的格式类型，如markdown或html。"
+                        },
+                        "fieldType": {
+                            "type": "string",
+                            "description": "翻译内容所属的领域类型，如技术文档或医疗文件。"
+                        }
+                    },
+                    "required": [
+                        "tran",
+                        "lang",
+                        "sourceType",
+                        "fieldType"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "DamoTranslator",
+                "arguments": {
+                    "tran": "本文主要介绍人工智能的发展历史与未来趋势。",
+                    "lang": "英语",
+                    "sourceType": "markdown",
+                    "fieldType": "技术文档"
+                }
+            }
+        ]
+    },
+    {
+        "question": "请处理这张图片：https://example.com/image.jpg，进行人脸和人体检测，同时获取人脸和人体属性",
+        "function": [
+            {
+                "name": "ImageFaceBodyDetection",
+                "description": "图片人脸和人体检测：该函数基于给定图片识别其中是否有人体和人脸，并获取相应的人体和人脸特征信息。此功能适用于服饰行业等需要图片识别和优化的应用场景。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "image_Url": {
+                            "type": "string",
+                            "description": "需要处理的图片的有效URL地址"
+                        },
+                        "do_pedestrian_attribute": {
+                            "type": "string",
+                            "description": "是否分析人体属性，如服饰分类、动作等。传入 'true' 或 'false'"
+                        },
+                        "do_pedestrian_det": {
+                            "type": "string",
+                            "description": "是否进行人体检测，检测图片中是否存在人体。传入 'true' 或 'false'"
+                        },
+                        "do_face_attribute": {
+                            "type": "string",
+                            "description": "是否获取人脸属性，如年龄、性别等。传入 'true' 或 'false'"
+                        },
+                        "do_face_det": {
+                            "type": "string",
+                            "description": "是否进行人脸检测，检测图片中是否存在人脸。传入 'true' 或 'false'"
+                        },
+                        "do_race_classify": {
+                            "type": "string",
+                            "description": "是否进行人种识别，分类人种信息。传入 'true' 或 'false'"
+                        }
+                    },
+                    "required": [
+                        "image_Url"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "ImageFaceBodyDetection",
+                "arguments": {
+                    "image_Url": "https://example.com/image.jpg",
+                    "do_pedestrian_attribute": "true",
+                    "do_pedestrian_det": "true",
+                    "do_face_attribute": "true",
+                    "do_face_det": "true",
+                    "do_race_classify": "true"
+                }
+            }
+        ]
+    },
+    {
+        "question": "请通过以下视频URL检测视频中的文案和语音，文案语言为中文，音频语言为英文：https://example.com/video.mp4",
+        "function": [
+            {
+                "name": "VideoTextAndAudioDetector",
+                "description": "VideoTextAndAudioDetector\n此函数用于检测视频中的文案和语音，通过识别视频中的文字和音频语言，实现对文案和语音的提取和分析。",
+                "parameters": {
+                    "type": "dict",
+                    "properties": {
+                        "videoUrl": {
+                            "type": "string",
+                            "description": "视频的URL地址，提供需要检测文案和语音的视频来源。"
+                        },
+                        "sourceTextLanguage": {
+                            "type": "string",
+                            "description": "视频中文案的语言类型。指定文案的语言有助于提高识别准确率。"
+                        },
+                        "sourceAudioLanguage": {
+                            "type": "string",
+                            "description": "视频中音频的语言类型。指定语音的语言以帮助精确地识别和提取音频内容。"
+                        }
+                    },
+                    "required": [
+                        "videoUrl",
+                        "sourceTextLanguage",
+                        "sourceAudioLanguage"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "VideoTextAndAudioDetector",
+                "arguments": {
+                    "videoUrl": "https://example.com/video.mp4",
+                    "sourceTextLanguage": "中文",
+                    "sourceAudioLanguage": "英文"
+                }
+            }
+        ]
+    },
+    {
+        "question": "我想知道'最新的iPhone型号'这个查询内容的搜索意图",
+        "function": [
+            {
+                "name": "SEO_ICBU_Query_Intent_Recognition",
+                "description": "SEO_ICBU_Query意图识别作用在于通过对用户输入的查询内容进行分析，从中识别出用户的搜索意图。这有助于对SEO类查询内容进行更精准的理解和处理。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "user_query": {
+                            "type": "string",
+                            "description": "用户输入的查询内容，用于意图识别。"
+                        },
+                        "source_language": {
+                            "type": "string",
+                            "description": "用户查询的语言，用来辅助意图识别。"
+                        }
+                    },
+                    "required": [
+                        "user_query",
+                        "source_language"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "SEO_ICBU_Query_Intent_Recognition",
+                "arguments": {
+                    "user_query": "最新的iPhone型号",
+                    "source_language": "中文"
+                }
+            }
+        ]
+    },
+    {
+        "question": "为即将到来的双十一生成文案，产品名称是iPhone 13，类别是电子产品，原语言是中文，目标语言是英语，详细描述为新品实现了多项技术突破，生成3条文案",
+        "function": [
+            {
+                "name": "generate_marketing_copy",
+                "description": "此函数用于生成通用营销文案，适用于各种商品及营销场景。",
+                "parameters": {
+                    "type": "dict",
+                    "properties": {
+                        "marketScene": {
+                            "type": "string",
+                            "description": "营销场景信息，如线上促销、节日活动等。"
+                        },
+                        "productTitle": {
+                            "type": "string",
+                            "description": "商品的标题或名称。"
+                        },
+                        "productCategory": {
+                            "type": "array<string>",
+                            "description": "商品所属的类别，如电子产品、服装等。"
+                        },
+                        "sourceLanguage": {
+                            "type": "string",
+                            "description": "文案的源语言，用于翻译的原文语言，如'zh'表示中文。"
+                        },
+                        "targetLanguage": {
+                            "type": "string",
+                            "description": "文案要翻译成的目标语言，如'en'表示英语。"
+                        },
+                        "itemSpecs": {
+                            "type": "string",
+                            "description": "商品的具体规格或特色信息。"
+                        },
+                        "productDescription": {
+                            "type": "string",
+                            "description": "商品的详细描述信息。"
+                        },
+                        "generateCounts": {
+                            "type": "number",
+                            "description": "生成文案的数量。"
+                        }
+                    },
+                    "required": [
+                        "marketScene",
+                        "productTitle",
+                        "productCategory",
+                        "sourceLanguage",
+                        "targetLanguage",
+                        "productDescription"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "generate_marketing_copy",
+                "arguments": {
+                    "marketScene": "双十一",
+                    "productTitle": "iPhone 13",
+                    "productCategory": [
+                        "电子产品"
+                    ],
+                    "sourceLanguage": "zh",
+                    "targetLanguage": "en",
+                    "productDescription": "新品实现了多项技术突破",
+                    "generateCounts": 3
+                }
+            }
+        ]
+    },
+    {
+        "question": "将商品描述从中文翻译为英文：这件产品真的是物美价廉，值得购买。",
+        "function": [
+            {
+                "name": "ProductTextTranslation",
+                "description": "商品文本翻译与润色\n本函数为商品文本提供高效的翻译和润色功能，运用阿里国际电商数据单独训练，特别适合处理商品描述和标题翻译。",
+                "parameters": {
+                    "type": "dict",
+                    "properties": {
+                        "sourceLanguage": {
+                            "type": "string",
+                            "description": "源语言，表示待翻译文本的原始语言"
+                        },
+                        "targetLanguage": {
+                            "type": "string",
+                            "description": "目标语言，表示翻译后的文本语言"
+                        },
+                        "sourceTextList": {
+                            "type": "array<string>",
+                            "description": "待翻译文本列表，包含多个需要翻译的商品文本"
+                        },
+                        "formatType": {
+                            "type": "string",
+                            "description": "文本格式类型，默认为text"
+                        },
+                        "glossary": {
+                            "type": "string",
+                            "description": "干预词表ID，当需要特定干预功能时使用"
+                        },
+                        "scene": {
+                            "type": "string",
+                            "description": "业务场景/AK，用于特定业务使用"
+                        },
+                        "translate_scene": {
+                            "type": "string",
+                            "description": "翻译类型，说明适用的翻译场景"
+                        },
+                        "requestBizId": {
+                            "type": "string",
+                            "description": "选填，在异步情景中用于透传的键值"
+                        }
+                    },
+                    "required": [
+                        "sourceLanguage",
+                        "targetLanguage",
+                        "sourceTextList",
+                        "formatType"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "ProductTextTranslation",
+                "arguments": {
+                    "sourceLanguage": "zh",
+                    "targetLanguage": "en",
+                    "sourceTextList": [
+                        "这件产品真的是物美价廉，值得购买。"
+                    ],
+                    "formatType": "text"
+                }
+            }
+        ]
+    },
+    {
+        "question": "请为市场场景“电商促销”生成从中文到英文的内容，产品标题是“智能手机”，类别是“电子产品”",
+        "function": [
+            {
+                "name": "PUSHPlatformContentGenerationTest",
+                "description": "PUSH平台内容生成测试功能，用于测试平台PUSH系统的链路及功能。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "marketScene": {
+                            "type": "string",
+                            "description": "用于选择营销文模版"
+                        },
+                        "sourceLanguage": {
+                            "type": "string",
+                            "description": "源语种，如输入语言"
+                        },
+                        "targetLanguage": {
+                            "type": "string",
+                            "description": "目标语种，如输出语言"
+                        },
+                        "productTitle": {
+                            "type": "string",
+                            "description": "商品或服务的标题"
+                        },
+                        "productCategory": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "商品或服务所属的类目"
+                        }
+                    },
+                    "required": [
+                        "marketScene",
+                        "sourceLanguage",
+                        "targetLanguage",
+                        "productTitle",
+                        "productCategory"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "PUSHPlatformContentGenerationTest",
+                "arguments": {
+                    "marketScene": "电商促销",
+                    "sourceLanguage": "中文",
+                    "targetLanguage": "英文",
+                    "productTitle": "智能手机",
+                    "productCategory": [
+                        "电子产品"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "question": "如何评价这句评论：服务十分糟糕，让人非常失望。",
+        "function": [
+            {
+                "name": "ReviewSentimentClassification",
+                "description": "该函数用于评论分析。函数首先对输入的评论进行情感分析，然后将评论分类。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "user_review": {
+                            "type": "string",
+                            "description": "用户提供的评论文本"
+                        }
+                    },
+                    "required": [
+                        "user_review"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "ReviewSentimentClassification",
+                "arguments": {
+                    "user_review": "服务十分糟糕，让人非常失望。"
+                }
+            }
+        ]
+    },
+    {
+        "question": "如何回复用户对这件商品的评论：“评论内容很好，物品质量过关”，评分是4分？",
+        "function": [
+            {
+                "name": "generateProductReply",
+                "description": "此功能用于自动回复用户对Lazada平台上某商品的评论。该功能根据用户的评论文本和商品评分自动生成适当的回复内容，有助于提升用户满意度。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "user_review": {
+                            "type": "string",
+                            "description": "用户对商品的具体评论内容。"
+                        },
+                        "product_rating": {
+                            "type": "string",
+                            "description": "用户对商品所给的评分，通常为1到5之间的数值。"
+                        }
+                    },
+                    "required": [
+                        "user_review",
+                        "product_rating"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "generateProductReply",
+                "arguments": {
+                    "user_review": "评论内容很好，物品质量过关",
+                    "product_rating": "4"
+                }
+            }
+        ]
+    },
+    {
+        "question": "请生成一个适用于市场推广的30秒新产品介绍视频，图片URL为http://example.com/image.jpg，卖点特征是'高效能低能耗'，市场推广主题为'节能环保'，希望视频脚本用中文编写。",
+        "function": [
+            {
+                "name": "AI_Video_Script_Generator",
+                "description": "AI视频生成工具\n本功能基于GPT-4V模型用于生成视频文案。通过输入图片、卖点特征、解说持续时间等信息，可以自动生成适用于市场推广的视频脚本。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "image_url": {
+                            "type": "string",
+                            "description": "用于生成视频的基础图片路径。必须为一个有效的图片URL。"
+                        },
+                        "feature": {
+                            "type": "string",
+                            "description": "产品或服务的卖点特征。帮助生成具有特色和吸引力的文案内容。"
+                        },
+                        "duration": {
+                            "type": "string",
+                            "description": "视频解说的持续时间（例如：30s, 1min）。决定生成的文案时长。"
+                        },
+                        "market_theme_info": {
+                            "type": "string",
+                            "description": "用于文案生成的市场推广主题信息总结。提供灵感及方向性指导。"
+                        },
+                        "target_language": {
+                            "type": "string",
+                            "description": "目标输出的语言。决定生成的文案使用何种语言（例如：英语、中文、法语等）。"
+                        }
+                    },
+                    "required": [
+                        "image_url",
+                        "feature",
+                        "duration",
+                        "market_theme_info",
+                        "target_language"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "AI_Video_Script_Generator",
+                "arguments": {
+                    "image_url": "http://example.com/image.jpg",
+                    "feature": "高效能低能耗",
+                    "duration": "30s",
+                    "market_theme_info": "节能环保",
+                    "target_language": "中文"
+                }
+            }
+        ]
+    },
+    {
+        "question": "我要为一款智能手表生成营销方案，产品标题为‘智能健康手表’，类目为‘电子产品’，关键词为‘健康监测’、‘智能穿戴’，属性信息为‘支持心率监测、睡眠分析’，请使用个性化推荐营销链路。",
+        "function": [
+            {
+                "name": "productAIGCTool",
+                "description": "商品AIGC小应用，用于生成商品的营销内容。你可以自定义商品标题、类目和其他信息以产生特点明确的商品营销方案。",
+                "parameters": {
+                    "type": "dict",
+                    "properties": {
+                        "chain_selector": {
+                            "type": "string",
+                            "description": "选择使用的营销链路"
+                        },
+                        "features": {
+                            "type": "string",
+                            "description": "营销方案的特点和优势"
+                        },
+                        "product_title": {
+                            "type": "string",
+                            "description": "要推广商品的标题"
+                        },
+                        "product_category": {
+                            "type": "string",
+                            "description": "要推广商品所属的类目"
+                        },
+                        "product_keywords": {
+                            "type": "string",
+                            "description": "商品的关键词，便于搜索引擎优化"
+                        },
+                        "product_pv": {
+                            "type": "string",
+                            "description": "商品的属性信息，如规格、型号等"
+                        }
+                    },
+                    "required": [
+                        "chain_selector",
+                        "features",
+                        "product_title",
+                        "product_category",
+                        "product_keywords",
+                        "product_pv"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "productAIGCTool",
+                "arguments": {
+                    "chain_selector": "个性化推荐",
+                    "features": "支持心率监测、睡眠分析",
+                    "product_title": "智能健康手表",
+                    "product_category": "电子产品",
+                    "product_keywords": "健康监测,智能穿戴",
+                    "product_pv": "支持心率监测、睡眠分析"
+                }
+            }
+        ]
+    },
+    {
+        "question": "请创建一个标题为“销售团队年度业绩总结”的卡片，要求从英文翻译成中文。",
+        "function": [
+            {
+                "name": "cardStyleTestFunction",
+                "description": "该函数用于测试应用XY卡片样式以及生成关于对话型工作流编排的内容和卡片样式。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "source_language": {
+                            "type": "string",
+                            "description": "源语言代码，例如 'en' 表示英文。"
+                        },
+                        "target_language": {
+                            "type": "string",
+                            "description": "目标语言代码，例如 'zh' 表示中文。"
+                        },
+                        "title": {
+                            "type": "string",
+                            "description": "卡片或内容的标题。"
+                        }
+                    },
+                    "required": [
+                        "source_language",
+                        "target_language"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "cardStyleTestFunction",
+                "arguments": {
+                    "source_language": "en",
+                    "target_language": "zh",
+                    "title": "销售团队年度业绩总结"
+                }
+            }
+        ]
+    },
+    {
+        "question": "要从预发布环境中处理交易主订单号为12345678、子订单号为87654321的商品退款申请，其商品ID为1234，SKU ID为4321，逆向订单号为REFUND123，退款金额为100，需要使用美元货币。同时，CCO预判责任金额为50，货币种类是美元。退款原因是'商品损坏'，买家的文字举证'物品到货时已损坏且多处划痕'，图片举证链接为'image_link'，视频举证链接为'video_link'。",
+        "function": [
+            {
+                "name": "SmartRefund_preTest",
+                "description": "此函数用于处理AE平台上的智能退款流程，测试环境为预发布。通过提交交易信息和纠纷信息，该函数可以生成相应的退款请求。",
+                "parameters": {
+                    "type": "dict",
+                    "properties": {
+                        "tradeOrderId": {
+                            "type": "integer",
+                            "description": "交易主订单号，唯一标识一个交易。"
+                        },
+                        "tradeOrderLineId": {
+                            "type": "integer",
+                            "description": "交易子订单号，代表该主订单下的具体商品。"
+                        },
+                        "itemId": {
+                            "type": "integer",
+                            "description": "商品的唯一标识ID。"
+                        },
+                        "skuId": {
+                            "type": "integer",
+                            "description": "SKU（库存保有单位）的唯一标识ID。"
+                        },
+                        "reverseOrderLineId": {
+                            "type": "string",
+                            "description": "逆向订单号，用于表示退货或退款的单号。"
+                        },
+                        "amount": {
+                            "type": "string",
+                            "description": "退款申请金额。"
+                        },
+                        "currency": {
+                            "type": "string",
+                            "description": "退款申请金额的货币种类。"
+                        },
+                        "ccoAmount": {
+                            "type": "string",
+                            "description": "CCO（客服中心）预判责任金额。"
+                        },
+                        "ccoCurrency": {
+                            "type": "string",
+                            "description": "CCO（客服中心）预判责任金额的货币种类。"
+                        },
+                        "reason": {
+                            "type": "string",
+                            "description": "申请退款的原因。"
+                        },
+                        "comment": {
+                            "type": "string",
+                            "description": "买家提供的文字举证。"
+                        },
+                        "images": {
+                            "type": "string",
+                            "description": "买家提供的图片举证。"
+                        },
+                        "videos": {
+                            "type": "string",
+                            "description": "买家提供的视频举证。"
+                        }
+                    },
+                    "required": [
+                        "tradeOrderId",
+                        "tradeOrderLineId",
+                        "itemId",
+                        "skuId",
+                        "reverseOrderLineId",
+                        "amount",
+                        "currency",
+                        "ccoAmount",
+                        "ccoCurrency",
+                        "reason",
+                        "comment",
+                        "images",
+                        "videos"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "SmartRefund_preTest",
+                "arguments": {
+                    "tradeOrderId": 12345678,
+                    "tradeOrderLineId": 87654321,
+                    "itemId": 1234,
+                    "skuId": 4321,
+                    "reverseOrderLineId": "REFUND123",
+                    "amount": "100",
+                    "currency": "美元",
+                    "ccoAmount": "50",
+                    "ccoCurrency": "美元",
+                    "reason": "商品损坏",
+                    "comment": "物品到货时已损坏且多处划痕",
+                    "images": "image_link",
+                    "videos": "video_link"
+                }
+            }
+        ]
+    },
+    {
+        "question": "请将图片URL为http://example.com/image.jpg的图片从中文翻译成英文。",
+        "function": [
+            {
+                "name": "imageTranslationWorkflowTest",
+                "description": "图片翻译工作流-预发布测试专用。此函数用于在预发布环境中测试图片翻译功能，通过传入图片URL和指定的源语言及目标语言，返回翻译结果。",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "imageUrl": {
+                            "type": "string",
+                            "description": "图片的URL地址。提供待翻译的图片路径。"
+                        },
+                        "sourceLanguage": {
+                            "type": "string",
+                            "description": "源语言。表示图片中内容的语种。"
+                        },
+                        "targetLanguage": {
+                            "type": "string",
+                            "description": "目标语言。表示翻译所要转换成的语种。"
+                        }
+                    },
+                    "required": [
+                        "imageUrl",
+                        "sourceLanguage",
+                        "targetLanguage"
+                    ]
+                }
+            }
+        ],
+        "input_parameters": [
+            {
+                "function_name": "imageTranslationWorkflowTest",
+                "arguments": {
+                    "imageUrl": "http://example.com/image.jpg",
+                    "sourceLanguage": "中文",
+                    "targetLanguage": "英文"
+                }
+            }
+        ]
+    }
+]

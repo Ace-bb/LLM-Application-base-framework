@@ -1,0 +1,35 @@
+{
+    "question": "如何回复用户对这件商品的评论：“评论内容很好，物品质量过关”，评分是4分？",
+    "function": [
+        {
+            "name": "generateProductReply",
+            "description": "此功能用于自动回复用户对Lazada平台上某商品的评论。该功能根据用户的评论文本和商品评分自动生成适当的回复内容，有助于提升用户满意度。",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "user_review": {
+                        "type": "string",
+                        "description": "用户对商品的具体评论内容。"
+                    },
+                    "product_rating": {
+                        "type": "string",
+                        "description": "用户对商品所给的评分，通常为1到5之间的数值。"
+                    }
+                },
+                "required": [
+                    "user_review",
+                    "product_rating"
+                ]
+            }
+        }
+    ],
+    "input_parameters": [
+        {
+            "function_name": "generateProductReply",
+            "arguments": {
+                "user_review": "评论内容很好，物品质量过关",
+                "product_rating": "4"
+            }
+        }
+    ]
+}

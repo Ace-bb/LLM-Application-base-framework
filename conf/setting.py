@@ -1,13 +1,12 @@
 from conf.packages import *
-from conf.conf import *
 from conf.Tools import Tools
-from utils import *
 tools = Tools()
 os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
-os.environ['OPENAI_API_BASE'] = ""
-# os.environ['OPENAI_API_BASE'] = ""
-ONE_API_KEY = "sk-"
+os.environ['OPENAI_API_BASE'] = "https://fast.xeduapi.com/v1"
+os.environ['OPENAI_API_KEY'] = "sk-jz0shLgMJY9HBVnLC3Fe3dCaA5204a418e67003f637f1eFf"
+# os.environ['OPENAI_API_BASE'] = "https://api.xeduapi.com"
+ONE_API_KEY = "sk-jz0shLgMJY9HBVnLC3Fe3dCaA5204a418e67003f637f1eFf"
 
 max_retries_times = 30
 

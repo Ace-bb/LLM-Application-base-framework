@@ -34,6 +34,7 @@ class Tools:
             json.dump(data, f, ensure_ascii=False)
         self.file_lock.release()
     
+    # def write_2_jsonl
     def write_2_txt(self, data, file_path):
         if not os.path.exists('/'.join(file_path.split('/')[:-1])): os.makedirs('/'.join(file_path.split('/')[:-1]))
         with open(file_path, 'w', encoding='utf-8') as f:
